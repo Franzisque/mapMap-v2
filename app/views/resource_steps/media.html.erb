@@ -1,0 +1,24 @@
+<%#=
+# resource_steps - media.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="media-new" class="media-form one-page">
+
+    <%= render partial: 'steps' %>
+
+    <div class="step-info">
+        <p>Please fill in all details about your experience:</p>
+    </div>
+    <div id="media-step-details" class="form-content">
+        <%= form_for @resource, url: wizard_path(:media), :html => { :multipart => true, class: 'form-horizontal' } do |f| %>
+            <%= render 'resources/form_content', {submit_text: 'Continue', btn_class: 'btn btn-primary', btn_id: 'file_upload_btn', f: f } %>
+        <% end %>
+    </div>
+</div>

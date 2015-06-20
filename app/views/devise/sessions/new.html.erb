@@ -1,0 +1,49 @@
+<%#=
+# devise-sessions - new.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="devise-login" class="devise-form one-page">
+
+    <h1 class="handwritten">Share your experience and explore a new world</h1>
+    <div class="register-form">
+        <div class="form-nav">
+            <%= link_to "Log in", new_session_path(resource_name), class: "btn active" %>
+            <%= link_to "Sign up", new_registration_path(resource_name), class: "btn" %>
+        </div>
+        <div class="form-content">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="field floatable">
+                    <%= f.email_field :email %>
+                    <%= f.label :email %>
+                </div>
+
+                <div class="field floatable">
+                    <%= f.password_field :password, autocomplete: "off" %>
+                    <%= f.label :password %>
+                </div>
+
+                <% if devise_mapping.rememberable? -%>
+                    <div class="field checkbox">
+                        <%= f.check_box :remember_me %>
+                        <%= f.label :remember_me %>
+                    </div>
+                <% end -%>
+
+                <div class="actions">
+                    <%= f.submit "Log in", class: "btn btn-primary" %>
+                </div>
+            <% end %>
+            <div class="form-shared">
+                <p>Or log in with:</p>
+                <%= render "devise/shared/socials" %>
+            </div>
+        </div>
+    </div>
+</div>

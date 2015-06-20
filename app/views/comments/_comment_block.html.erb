@@ -1,0 +1,18 @@
+<%#=
+# comments - _comment_block.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+<p><%= text_block(comment.text) %></p>
+<% if current_user.eql?(comment.user) %>
+    <div class="comment-actions">
+        <%= link_to "Edit", edit_medium_comment_path(comment.resource, comment), remote: true %>
+        |   <%= link_to "Delete", medium_comment_path(comment.resource, comment),
+        data: { confirm: "Are you sure?" }, :remote => true, method: :delete %>
+    </div>
+<% end %>

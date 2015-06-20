@@ -1,0 +1,78 @@
+<%#=
+# layouts - _header.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<nav id="main-navigation" role="navigation">
+    <div id="navigation-content">
+
+        <div id="nav-logo">
+          <%= link_to image_tag("mapmap-logo.png", alt: "mapMap"), root_path %>
+        </div>
+
+        <% if params[:controller] == 'map' %>
+            <div id="location-search">
+                <%= text_field_tag(:location, nil, class: 'form-control col-lg-2', placeholder: 'Search for Locations')%>
+            </div>
+        <% end %>
+
+        <div id="menu-btn" class="menu-btn">
+            <button type="button" class="navbar-toggle">
+                <span class="menu-bar"> </span>
+                <span class="menu-bar"> </span>
+                <span class="menu-bar"> </span>
+            </button>
+        </div>
+
+        <div id="nav-links" class="navbar-header">
+            <ul class="navbar-nav">
+                <li><%= nav_link 'Map', root_path %></li>
+                <li><%= nav_link 'About', about_path %></li>
+                <li><%= nav_link 'Upload', resource_steps_path %></li>
+                <% if user_signed_in? %>
+                    <li class="profile-nav">
+                        <%= image_tag(current_user.image_url("small"), alt: "", class: "provider-pic") %>
+                        <span class="profile-name">Me
+                            <% unless unread_messages == 0 %>
+                                <span id="message-nav" class="message-counter"><%= unread_messages %></span>
+                            <% end %>
+                        </span>
+                        <span class="fa fa-caret-down"> </span>
+                        <ul class="navbar-profile-nav">
+                            <li><%= link_to 'Profile', profile_path(current_user.username), :class => 'profile-link' %></li>
+                            <li><%= link_to 'Edit Account', edit_user_registration_path, :class => 'profile-link' %></li>
+                            <li>
+                                <%= link_to messages_path, :class => 'profile-link' do %>
+                                    <span>Messages</span>
+                                    <% unless unread_messages == 0 %>
+                                        <span class="message-counter"><%= unread_messages %></span>
+                                    <% end %>
+                                <% end %>
+                            </li>
+                            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'profile-link' %></li>
+                        </ul>
+                    </li>
+                <% else %>
+                    <li><%= nav_link "Log in", user_session_path %></li>
+                    <li><%= nav_link "Sign up", new_user_registration_path %></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<% if notice || alert %>
+    <div id="nav-message" class="message">
+        <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+        <% else %>
+            <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+    </div>
+<% end %>

@@ -1,0 +1,55 @@
+<%#=
+# devise-registrations - new.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="devise-new" class="devise-form one-page">
+    <h1 class="handwritten">Share your experience and explore a new world</h1>
+    <div class="register-form">
+        <div class="form-nav">
+            <%= link_to "Log in", new_session_path(resource_name), class: "btn" %>
+            <%= link_to "Sign up", new_registration_path(resource_name), class: "btn active" %>
+        </div>
+        <div class="form-content">
+
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+
+                <div class="field floatable">
+                    <%= f.email_field :email, required: true %>
+                    <%= f.label :email %>
+                </div>
+
+                <div class="field floatable">
+                    <%= f.text_field :username, required: true  %>
+                    <%= f.label :username %>
+                </div>
+
+                <div class="field floatable">
+                    <%= f.password_field :password, required: true, autocomplete: "off" %>
+                    <%= f.label :password %>
+                </div>
+
+                <div class="field floatable">
+                    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                    <%= f.label :password_confirmation %>
+                </div>
+
+                <div class="actions">
+                    <%= f.submit "Sign up", class: "btn btn-primary" %>
+                </div>
+            <% end %>
+
+            <div class="form-shared">
+                <p>Or sign up with:</p>
+                <%= render "devise/shared/socials" %>
+            </div>
+        </div>
+    </div>
+</div>

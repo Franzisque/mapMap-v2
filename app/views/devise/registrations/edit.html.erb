@@ -1,0 +1,183 @@
+<%#=
+# devise-registrations - edit.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="devise-edit" class="devise-form one-page">
+    <h1>Account Settings</h1>
+    <div class="form-content">
+        <div class="edit-wrapper left-box">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { :multipart => true, method: :put }) do |f| %>
+
+                <div class="devise-message edit-container">
+                    <%= devise_error_messages! %>
+                        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <% end %>
+                </div>
+                <div id="user-essentials" class="edit-container">
+                    <h2>Account Information</h2>
+                    <div class="field">
+                        <div class="label-field">
+                            <%= f.label :username, "Username *" %>
+                        </div>
+                        <div class="input-field">
+                            <%= f.text_field :username, required: true %>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="label-field">
+                            <%= f.label :email, "Email *" %>
+                        </div>
+                        <div class="input-field">
+                            <%= f.email_field :email, readonly: @user.provider_set?, required: true %>
+                        </div>
+                    </div>
+
+                    <% if !@user.provider_set? %>
+                        <div class="field">
+                            <div class="label-field">
+                                <%= f.label :password %>
+                            </div>
+                            <div class="input-field">
+                                <%= f.password_field :password, autocomplete: "off" %>
+                                <i>(leave blank if you don't want to change it)</i>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="label-field">
+                                <%= f.label :password_confirmation %>
+                            </div>
+                            <div class="input-field">
+                                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="label-field">
+                                <%= f.label :current_password %>
+                            </div>
+                            <div class="input-field">
+                                <%= f.password_field :current_password, autocomplete: "off" %>
+                                <i>(we need your current password if yout want to change your password or email address)</i>
+                            </div>
+                        </div>
+                    <% end %>
+
+                    <div class="field">
+                        <div class="label-field">
+                            <%= f.label "private Profile" %>
+                        </div>
+                        <div class="input-field checkbox-right">
+                            <%= f.check_box :private %>
+                            <i>(Hide Profile from other users, only picture and username will be visible)</i>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="label-field">
+                            <%= f.label "Allow Messages" %>
+                        </div>
+                        <div class="input-field checkbox-right">
+                            <%= f.check_box :allowcontact %>
+                            <i>(Allow other users to send you messages)</i>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="user-details" class="edit-container">
+                    <h2>Personal Information</h2>
+                    <div class="field">
+                        <div class="label-field">
+                            <%= f.label :firstname %>
+                        </div>
+                        <div class="input-field">
+                            <%= f.text_field :firstname %>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="label-field">
+                            <%= f.label :lastname %>
+                        </div>
+                        <div class="input-field">
+                            <%= f.text_field :lastname %>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="label-field">
+                            <%= f.label :gender %>
+                        </div>
+                        <div class="input-field">
+                            <%= f.select :gender, options_for_select(User::GENDER, @user.gender), include_blank: "Please select" %>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="label-field">
+                            <%= f.label :birth_day, "Birthday" %>
+                        </div>
+                        <div id="birthday-input" class="input-field">
+                            <%= f.select :birth_day, options_for_select(User::DAYS, @user.birth_day), include_blank: "Day" %>
+                            <%= f.select :birth_month, options_for_select(User::MONTHS, @user.birth_month), include_blank: "Month" %>
+                            <%= f.select :birth_year, options_for_select(User::YEAR_RANGE, @user.birth_year), include_blank: "Year" %>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="label-field">
+                            <%= f.label :country %>
+                        </div>
+                        <div class="input-field">
+                            <%= f.collection_select(:country_id, @countries, :id, :name, {:include_blank => 'Please Select'}) %>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="user-avatar" class="edit-container">
+                    <h2>Profile Pictures</h2>
+                    <div class="field-profile-pictures">
+                        <% @user.avatars.each do |avatar| %>
+                            <div class="field-images">
+                                <p><%= avatar.provider %></p>
+                                <div class="provider-picture">
+                                    <%= image_tag avatar.url("normal"), alt: avatar.provider %>
+                                </div>
+                                <div class="radio-field">
+                                    <label>
+                                        <%= f.radio_button :avatar, avatar.id %> Select
+                                    </label>
+                                </div>
+                            </div>
+                        <% end %>
+                        <div class="field">
+                            <p><a href="https://en.gravatar.com/" target="_blank">Create Gravatar</a></p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div id="user-save" class="edit-container">
+                    <div class="actions left">
+                        <%= f.submit "Update", class: "btn btn-update"%>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div id="cancel-account" class="edit-container right-box">
+            <h3>Cancel my account</h3>
+            <p>If you delete your account, every information and media will be deleted.</p>
+            <%= button_to "I accept, delete my account", registration_path(resource_name), class: "btn btn-warning", data: { confirm: "Are you sure?" }, method: :delete %>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<%#=
+# user - _media_buttons.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<%= user_resource_link "All", profile_path(@user.username) %>
+<%= user_resource_link "Videos", profile_path(username: @user.username, medium: 'videos') %>
+<%= user_resource_link "Images", profile_path(username: @user.username, medium: 'images') %>

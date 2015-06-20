@@ -1,0 +1,15 @@
+/**
+ * resources - destroy.js.erb
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+$('.resource-container[data-id=<%= @resource.id %>]').remove();
+if ($('.resource-container').length < 1){
+    $('#profile-media').html('<div class="empty-container"><p>No media <br />available</p></div>');
+}

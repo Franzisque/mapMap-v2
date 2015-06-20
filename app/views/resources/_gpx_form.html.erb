@@ -1,0 +1,17 @@
+<%#=
+# resources - _gpx_form.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="track-edit-fields">
+    <%= form_tag({}, id: "gpx_upload") do %>
+        <%= file_field(:gpx_file, :file, id: 'gpx_input', class: 'gpx_file_input', accept: '.gpx') %>
+        <%= submit_tag "Upload", id: 'gpx_upload_button', disabled: true %>
+    <% end %>
+</div>

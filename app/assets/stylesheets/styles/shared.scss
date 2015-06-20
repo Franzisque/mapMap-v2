@@ -1,0 +1,37 @@
+/**
+ * styles - shared.scss
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+.top-container {
+    width: 100%;
+    background-position: 10% 70%;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 500px;
+    max-height: 700px;
+    position: relative;
+    color: #fff;
+}
+
+.flag {
+    position:absolute;
+    top:0;
+    right: 50px;
+    display: none;
+    width: 125px;
+    height: 145px;
+    background-image: image_url('flag-blue.png');
+    font-family: $font-hand;
+    text-align: center;
+    p:first-child{
+        margin-top: 20px;
+        font-size: 1.3em;
+    }
+}

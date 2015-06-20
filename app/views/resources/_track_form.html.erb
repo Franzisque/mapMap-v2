@@ -1,0 +1,52 @@
+<%#=
+# resources - _track_form.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="media-track-map left-box">
+    <div id="route-location-search" class="field">
+        <%= text_field_tag(:location, nil, class: 'form-control', placeholder: 'Search for Locations')%>
+    </div>
+    <%= content_tag(:div, nil, id: map_id, class: 'map') %>
+</div>
+<div class="media-track-controls right-box">
+    <div class="gpx-upload">
+        <div class="form-heading">
+            <h5>Upload GPX-File</h5>
+            <span class="help-icon"></span>
+            <div class="help-text">
+                <p>You can upload a gpx-file if you tracked your route via a gpx-device or a smartphone app.</p>
+            </div>
+        </div>
+        <div class="route-controls">
+            <%= render partial: "resources/gpx_form" %>
+        </div>
+    </div>
+    <div class="form-heading">
+        <h5>Draw/Edit track</h5>
+        <span class="help-icon"></span>
+        <div class="help-text">
+            <p>Use the buttons below to draw and modify a route.</p>
+            <p>To change the initial point of your track, drag the marker or search
+            a location in the upper search bar.</p>
+        </div>
+    </div>
+    <div class="draw-delete-buttons">
+        <button class="btn draw-track-btn btn-update" id="draw-track-btn"></button>
+        <button class="btn delete-circle-btn btn-warning"></button>
+    </div>
+    <%= form_for @resource, url: url, :html => { class: 'form-horizontal', id: 'input_form_tracks' } do |f| %>
+
+        <%= render partial: 'shared/errors' %>
+
+        <div class="actions">
+            <%= f.submit submit_text, class: btn_class %>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,16 @@
+<%#=
+# messages - new.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="messages media-form one-page">
+    <h1>New message to <%= @receiver.username %></h1>
+
+    <%= render 'form' %>
+</div>

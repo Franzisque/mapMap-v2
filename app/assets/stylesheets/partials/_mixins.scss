@@ -1,0 +1,66 @@
+/**
+ * partials - _mixins.scss
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+@mixin vendor-prefix($name, $argument) {
+    -webkit-#{$name}: #{$argument};
+    -ms-#{$name}: #{$argument};
+    -moz-#{$name}: #{$argument};
+    -o-#{$name}: #{$argument};
+    #{$name}: #{$argument};
+}
+
+@mixin calc-height($value1, $value2) {
+    height: -webkit-calc(#{$value1} - #{$value2});
+    height: -moz-calc(#{$value1} - #{$value2});
+    height: -ms-calc(#{$value1} - #{$value2});
+    height: -o-calc(#{$value1} - #{$value2});
+    height: calc(#{$value1} - #{$value2});
+}
+
+@mixin calc-position($position, $value1, $value2, $divide: 1){
+    #{$position}: -webkit-calc(#{$value1} - #{$value2}/#{$divide});
+    #{$position}: -moz-calc(#{$value1} - #{$value2}/#{$divide});
+    #{$position}: -ms-calc(#{$value1} - #{$value2}/#{$divide});
+    #{$position}: -o-calc(#{$value1} - #{$value2}/#{$divide});
+    #{$position}: calc(#{$value1} - #{$value2}/#{$divide});
+}
+
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    @include vendor-prefix("transform", "translateY(-50%)");
+}
+
+@mixin img-border-frame ($pic-width, $pic-frame-padding, $pic-frame-border){
+    width: $pic-width + $pic-frame-padding*2 + $pic-frame-border*2; //162px;
+    height: $pic-width + $pic-frame-padding*2 + $pic-frame-border*2;
+    border: $pic-frame-border solid #fff;
+}
+
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+
+@mixin rotate ($deg) {
+    @include transform(rotate(#{$deg}deg));
+}

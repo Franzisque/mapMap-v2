@@ -1,0 +1,31 @@
+<%#=
+# comments - _form.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+<%= form_for [@resource, @comment], url: url, remote: remote do |f| %>
+    <% if @comment.errors.any? %>
+        <div class="error_messages">
+            <h3><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
+            <ul>
+                <% @comment.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.text_area :text %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit submit_text, class: submit_class %>
+    </div>
+<% end %>
+

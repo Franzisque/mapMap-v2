@@ -1,0 +1,57 @@
+/**
+ * partials - _variables.scss
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Dancing+Script:400,700|Satisfy);
+
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+// ############# FONT #############
+$font: "Roboto", 'Open-Sans', Helvetica, Arial, sans-serif;
+$font-hand: 'Dancing Script', 'Satisfy', cursive;
+$font-color: #333;
+
+
+// ############# COLORS BUTTONS #############
+$red: rgba(218, 89, 89, 1);
+$blue: rgba(49, 120, 193, 1);
+$green: rgba(74, 193, 107, 1);
+$dark-red: rgba(255, 62, 55, 1); // #e13e37
+$dark-blue: rgba(32, 50, 148, 1); // #203294
+$dark-yellow: rgba(224, 157, 12, 1); // #e09d0c
+$dark-green: rgba(8, 169, 31, 1); // #08a91f
+
+// ############# COLORS #############
+$menu-color: #666;
+$rgba-white: rgba(255, 255, 255, 0.9);
+$nav-background-color: #fff;
+$content-background-color: #f9f9f9;
+$default-border: 1px solid #ddd;
+$white: #fff;
+$grey: rgba(71,71,71,1);
+$dark-grey: rgba(55, 55, 55, 1);
+$light-light-grey: rgba(236,236,236,1);
+$light-grey: rgba(223,223,223,1);
+$icon-color-default: #bbb;
+
+// ############ IMAGES ##############
+$biker-big: image_url('utah.jpg');
+$mountain-big: image_url('mountain.jpg');
+$skateboard-big: image_url('skateboard.jpg');
+
+$picture-icon: image_url('picture-icons.png');
+$video-icon: image_url('film-icon.png');
+$youtube-vimeo-icon: image_url('youtube-vimeo.png');
+
+// ############ MEASUREMENTS ###############
+$nav-height: 60px;
+$content-width: 1200px;
+$body-width: 1920px;
+$background-image-height: 450px;

@@ -1,0 +1,19 @@
+/**
+ * messages - destroy.js.erb
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+<% if @message.errors.any? %>
+    $('<%= escape_javascript(render partial: 'shared/js_errors', locals: {resource: @message}) %>').insertBefore('#content');
+    setTimeout(function(){
+        $('#nav-message').remove();
+    }, 3000);
+<% else %>
+    $('.existing-messages[data-id="<%=@message.id %>"]').remove();
+<% end %>

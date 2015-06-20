@@ -1,0 +1,73 @@
+<%#=
+# resources - _form_content.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="media-form-content left-box">
+    <%= render partial: 'shared/errors' %>
+    <div class="field">
+        <div class="label-field">
+            <%= f.label :title, "Title*" %>
+        </div>
+        <div class="input-field">
+            <%= f.text_field :title, :required => :true, class: 'form-control', placeholder: "Awesome title ..."  %>
+        </div>
+    </div>
+    <div class="field">
+        <div class="label-field">
+            <%= f.label :description %>
+        </div>
+        <div class="input-field">
+            <%= f.text_area :description, class: 'form-control', placeholder: "Awesome description ..." %>
+        </div>
+    </div>
+    <%= f.hidden_field :medium_type  %>
+    <%= f.fields_for :medium do |ff| %>
+        <%= render :partial => fields_partial_for( @resource.medium ), :locals => { :f => ff }  %>
+    <% end %>
+</div>
+
+<div class="media-tags-form right-box">
+    <div class="form-heading">
+        <h5>Tags*</h5>
+        <span class="help-icon"></span>
+        <div class="help-text">
+            <p>Tags helps us to specify and find your media. <br />Please add some tags in the tag box bellow; like 'skiing' if your media is about skiing.<br />Other users can search for certain tags they are interested in.</p>
+        </div>
+    </div>
+    <div class="tag-wrapper">
+        <p>Season:</p>
+        <div class="field checkboxes">
+            <%= f.collection_check_boxes :season_tags, @season_tags, :id, :name %>
+        </div>
+        <p>Indoor/Outdoor:</p>
+        <div class="field checkboxes">
+            <%= f.collection_check_boxes :door_tags, @door_tags, :id, :name %>
+        </div>
+        <p>Difficulty level:</p>
+        <div class="field checkboxes">
+            <%= f.collection_check_boxes :level_tags, @level_tags, :id, :name %>
+        </div>
+
+        <div class="field">
+            <div class="input-field">
+                <%= f.text_field :tag_list, class: 'form-control', id: 'tag-box', placeholder: "Add Tags ( skiing, mountain, ... )" %>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <% if params[:controller] == 'resources' %>
+            <a class="btn btn-primary" id="edit-track-btn"><i class='fa fa-map-marker '></i>Edit Track</a>
+        <% end %>
+        <%= f.submit submit_text, class: btn_class, id: btn_id %>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="background-fix"></div>

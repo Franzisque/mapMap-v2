@@ -1,0 +1,21 @@
+<%#=
+# shared - _errors.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<% if @resource.errors.any? %>
+    <div class="error_messages">
+        <h3><%= pluralize(@resource.errors.count, "error") %> prohibited this media from being saved:</h3>
+        <ul>
+            <% @resource.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>

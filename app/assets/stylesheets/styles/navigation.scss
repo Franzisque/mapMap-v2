@@ -1,0 +1,311 @@
+/**
+ * styles - navigation.scss
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+// ################## NAVIGATION TOP ##################
+#main-navigation {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    height: $nav-height;
+    z-index: 5000;
+    font-family: $font;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    #navigation-content {
+        max-width: 1300px;
+        height: 100%;
+        margin: 0 auto;
+        background-color: $nav-background-color;
+        position: relative;
+
+        #nav-logo {
+            height: 100%;
+            width: 170px;
+            position: absolute;
+            left: 2px;
+            top: 0;
+        }
+        #nav-logo img {
+            width: 100%;
+        }
+
+        #location-search {
+            width: 100%;
+            padding: 5px;
+            background-color: $nav-background-color;
+            position: absolute;
+            top: $nav-height;
+            height: 46px;
+            input {
+                padding: 5px;
+                width: 100%;
+                font-family: $font;
+                color: $font-color;
+                font-size: 16px;
+                @include vendor-prefix("transition", "all 0.5s");
+                &.highlight, &:focus {
+                    border-color: #3178c1;
+                    box-shadow: 0px 0px 5px #3178c1;
+                }
+            }
+        }
+
+        #nav-links{
+            display: none;
+            background-color: #eee;
+            z-index: 5001;
+            width: 100%;
+            position: absolute;
+            top: $nav-height;
+            left: 0;
+            ul {
+                li {
+                    border-bottom: 1px solid #fff;
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+            a {
+                display: block;
+                font-family: $font;
+                text-decoration: none;
+                padding: 10px;
+                text-align: center;
+                color: $font-color;
+                @include vendor-prefix("transition", "all ease 1s");
+                &:hover{
+                    background-color: #fff;
+                }
+            }
+            .profile-nav{
+                img, span{
+                    display: none;
+                }
+                li {
+                    span {
+                        display: inline;
+                    }
+                }
+                #message-nav{
+                    position: absolute;
+                    top: -5px;
+                    left: 25px;
+                }
+                span.message-counter {
+                    color: #fff;
+                    padding: 2px 8px;
+                    margin-left: 5px;
+                    @include vendor-prefix(border-radius, 15px);
+                    background: #0878b8;
+                    vertical-align: middle;
+                }
+            }
+        }
+        .expand {
+            display: block !important;
+        }
+    }
+}
+
+body.map #main-navigation #navigation-content #nav-links{
+    top: $nav-height + 46px;
+}
+
+#menu-btn{
+    $width: 39px;
+    width: $width;
+    background-color: rgba(255, 255, 255, 1);
+
+    position: absolute;
+    right: 10px;
+    top: 13px;
+    border: 1px solid #ddd;
+    @include vendor-prefix("border-radius", "3px");
+
+    button.navbar-toggle {
+        padding: 7px;
+        width: 100%;
+        position:relative;
+        background-color: #fff;
+        color: $menu-color;
+        font-size: 20px;
+        border: none;
+        .menu-bar {
+            display:block;
+            width: 25px;
+            background-color: $menu-color;
+            height: 3px;
+            margin-top: 4px;
+            &:first-child {
+                margin-top: 0px;
+            }
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #main-navigation {
+        #navigation-content {
+            #location-search {
+                top:0;
+                left: 210px;
+                width: 300px;
+                margin: 7px;
+                input {
+                    height: 100%;
+                }
+            }
+            #nav-links{
+                top: $nav-height;
+                left: auto;
+                right: 0;
+                width: 300px;
+            }
+        }
+    }
+    body.map #main-navigation #navigation-content #nav-links{
+        top: $nav-height;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .pac-container{
+        z-index: 6000;
+    }
+    #menu-btn{
+        display:none;
+    }
+
+    #main-navigation {
+        #navigation-content {
+            #nav-links{
+                display: block;
+                top: 0 !important;
+                line-height: $nav-height;
+                background-color: #fff;
+                width: auto;
+                ul {
+                    li {
+                        display: inline;
+                        padding: 5px 5px 1px 5px;
+                        border-bottom: none;
+                    }
+                }
+                a {
+                    display: inline;
+                    text-transform: uppercase;
+                    color: $font-color;
+                    border-bottom: 4px solid #fff;
+                    @include vendor-prefix("transition", "all ease 1s");
+                }
+                .navbar-nav{
+                    li {
+                        display: inline;
+                        padding: 10px 5px;
+                        cursor: pointer;
+                        .navbar-link{
+                            font-family: $font;
+                            text-decoration: none;
+                            text-transform: uppercase;
+                            color: $font-color;
+                            &:hover{
+                                border-bottom: 4px solid #333;
+                            }
+                        }
+                        .current {
+                            border-bottom: 4px solid #333;
+                        }
+                        &:last-child{
+                          margin-right: 10px;
+                        }
+                    }
+                }
+                .profile-nav {
+                    position:relative;
+                    img {
+                        @include vendor-prefix("border-radius", 100%);
+                        width: 40px;
+                        height: 40px;
+                        position: absolute;
+                        top:0;
+                        left:0;
+                        display: block;
+                    }
+                    span {
+                        display: inline;
+                    }
+                    .profile-name {
+                        text-transform: uppercase;
+                        margin-left: 40px;
+                    }
+                    .navbar-profile-nav{
+                        display:none;
+                        position:absolute;
+                        top: $nav-height - 9;
+                        right:0;
+                        width: 250px;
+                        padding: 5px;
+                        background-color: rgba(255,255,255,1);
+                        li {
+                            display: block;
+                            line-height: 20px;
+                            border-bottom: 1px solid #ddd;
+                            &:last-child {
+                                border-bottom: none;
+                            }
+                            .profile-link {
+                                padding: 5px 5px 1px 5px;
+                                display: block;
+                                border-bottom: 4px solid #fff;
+                                &:hover{
+                                    border-bottom: 4px solid #333;
+                                    padding-bottom: 1px;
+                                }
+                            }
+                        }
+                    }
+                    span.message-counter {
+                        font-size: 16px;
+                        line-height: 19px;
+                        vertical-align: top;
+                        padding: 2px 7px;
+                    }
+
+                    .profile-active{
+                        display:block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #main-navigation {
+        #navigation-content {
+            #nav-links {
+                .navbar-nav {
+                    li {
+                        display: inline;
+                        padding: 10px;
+                        margin-right: 10px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

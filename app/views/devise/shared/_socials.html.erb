@@ -1,0 +1,16 @@
+<%#=
+# devise-shared - _socials.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= link_to "#{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: "omniauth provider-#{provider.to_s}" %>
+    <% end -%>
+<% end -%>

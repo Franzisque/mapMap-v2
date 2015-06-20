@@ -1,0 +1,13 @@
+/**
+ * user - show.js.erb
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+$('#profile-media').html("<%= escape_javascript(render partial: 'resources', locals: { resources: @resources }) %>");
+$('#profile-buttons').html("<%= escape_javascript(render partial: 'media_buttons') %>");

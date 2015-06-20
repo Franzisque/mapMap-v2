@@ -1,0 +1,21 @@
+<%#=
+# video_uploads - _show.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+<div id="media-video" class="media-head">
+    <% if @resource.medium.upload.processing? %>
+        <div class="loading-container">
+            <h4>Video is in progress</h4>
+            <%= image_tag("ajax-loader.gif", class: "loading") %>
+            <p>Your uploaded video is still in progress</p>
+        </div>
+    <% else %>
+        <%= video_tag @resource.medium.upload.url(:mp4, timestamp: false), :controls => true, class: 'video-film' %>
+    <% end %>
+ </div>

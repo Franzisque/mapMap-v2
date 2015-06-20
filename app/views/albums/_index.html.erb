@@ -1,0 +1,16 @@
+<%#=
+# albums - _index.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="album-thumb media-title">
+    <%= link_to medium_path(resource), title: resource.title do %>
+        <%= image_tag resource.medium.images.first.pic.url(:medium, timestamp: false), alt: resource.title %>
+    <% end %>
+</div>

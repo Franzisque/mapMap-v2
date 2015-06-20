@@ -1,0 +1,25 @@
+<%#=
+# resource_steps - _steps.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="media-step-overview">
+    <%= step_container(@step, 'step-select') do %>
+        <span>Step 1</span>
+        <p>SELECT<br/>Media</p>
+    <% end %>
+    <%= step_container(@step, 'step-media') do %>
+        <span>Step 2</span>
+        <p>ADD<br/>Details</p>
+    <% end %>
+    <%= step_container(@step, 'step-tracking') do %>
+        <span>Step 3</span>
+        <p>ADD<br/>Track</p>
+    <% end %>
+</div>

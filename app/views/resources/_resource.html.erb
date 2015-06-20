@@ -1,0 +1,23 @@
+<%#=
+# resources - _resource.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="media-container">
+    <h5><%= link_to resource.title, medium_path(resource) %></h5>
+
+    <%= render :partial => index_partial_for( resource.medium ), locals: { resource: resource } %>
+
+    <div class="media-info">
+        <p><i class='fa fa-user '></i><%= link_to resource.user.username, profile_path(resource.user.username) %></p>
+        <p><i class='fa fa-clock-o '></i><%= set_time_difference(resource.created_at) %></p>
+        <p><i class='fa fa-eye '></i><%= "#{resource.views} #{'view'.pluralize(resource.views)}" %></p>
+        <%= content_tag(:div, nil, class: "media-icon #{resource.medium_type.downcase}-icon") %>
+    </div>
+</div>

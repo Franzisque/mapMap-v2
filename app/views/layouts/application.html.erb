@@ -1,0 +1,43 @@
+<%#=
+# layouts - application.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>mapMap - Share your experience and explore a new world</title>
+        <meta name="description" content="mapMap is an interactive online leisure guide for sharing videos and images of great activities.">
+        <meta name="keywords" content="mapmap, leisure guide, activities, activity, map">
+        <meta name="robots" content="index,follow">
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDflprWGEE_9hNkxNG6PS8Ch-drSpEgCD8&sensor=true&libraries=places,geometry"></script>
+        <script type="text/javascript" src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
+        <script src='//google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js' type='text/javascript'></script>
+        <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+        <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link type="image/png" rel="icon" href="/favicon.png">
+        <%= yield :facebook_metadata %>
+        <%= csrf_meta_tags %>
+    </head>
+    <body class="<%= controller_name %> <%= action_name %>">
+        <%= render 'layouts/header' %>
+        <div id="content">
+            <noscript>
+                <div class="noscript-container">
+                    <div class="noscript-message">
+                        <h1>Please activate Javascript</h1>
+                        <p>Otherwise this website can not be used properly!</p>
+                    </div>
+                </div>
+            </noscript>
+            <%= yield %>
+        </div>
+    </body>
+</html>

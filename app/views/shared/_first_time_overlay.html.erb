@@ -1,0 +1,50 @@
+<%#=
+# shared - _first_time_overlay.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="first-time-overlay">
+    <div class="project-content">
+        <div class="overlay-step step-1">
+            <div class="hide-overlay"><span class="reset-link">&#10006;</span></div>
+            <h3>Welcome</h3>
+            <h4>What is mapMap?</h4>
+            <p>mapMap is an <b>interactive online leisure guide</b> for sharing <b>videos</b> and <b>images</b> of great activities. Our aim is to encourage people to engage <b>together</b> in <b>athletic actions</b>.</p>
+            <div class="next-button">Next</div>
+        </div>
+        <div class="overlay-step step-2" style="display: none;">
+            <div class="hide-overlay"><span class="reset-link">&#10006;</span></div>
+            <h3>Share your Experience</h3>
+            <p>This is actually quite simple.<br>Just follow the steps below.</p>
+            <ol>
+                <li>Create an account - <b><%= link_to "SIGN UP", new_user_registration_path %></b></li>
+                <li>Upload your experience - <b><%= link_to 'UPLOAD', resource_steps_path %></b></li>
+                <li>Specify the <b>details</b> of your image or video</li>
+                <li>Add a <b>location</b> or <b>track</b></li>
+            </ol>
+            <div class="prev-button">Previous</div>
+            <div class="next-button">Next</div>
+        </div>
+        <div class="overlay-step step-3" style="display: none;">
+            <div class="hide-overlay"><span class="reset-link">&#10006;</span></div>
+            <h3>Search for Activities</h3>
+            <p>We offer you possibilities to find just the right one according to your interests</p>
+            <p class="list"><b class="highlight-target" data-target="location">Search</b> for locations</p>
+            <p class="list"><b class="highlight-target" data-target="filter">Filter</b> shown results</p>
+            <ul>
+                <li>by <b class="highlight-target" data-target="activities">Type</b></li>
+                <li>by <b class="highlight-target" data-target="difficulty">Difficulty level</b></li>
+                <li>by <b class="highlight-target" data-target="filter-user">Username</b></li>
+                <li>by <b class="highlight-target" data-target="filter-tags">Tags</b></li>
+            </ul>
+            <div class="prev-button">Previous</div>
+            <div class="last-button">Finish</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<%#=
+# messages - show.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="messages media-form one-page">
+    <h1>Message from <%= @message.sender.username %></h1>
+    <p id="notice"><%= notice %></p>
+
+    <div class="form-content">
+        <p class="subject"><%= @message.subject %></p>
+            <p class="received"><%= l @message.created_at %></p>
+            <div><%= @message.text %></div>
+
+        <div class="form-links">
+            <%= link_to 'Reply', new_message_path(receiver_id: @message.sender.id) %> |
+            <%= link_to 'Back', messages_path %> |
+            <%= link_to 'Destroy', @message, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+    </div>
+</div>

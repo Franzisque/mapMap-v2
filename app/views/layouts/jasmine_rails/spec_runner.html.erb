@@ -1,0 +1,42 @@
+<%#=
+# jasmine_rails - spec_runner.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+        <title>Jasmine Specs</title>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDflprWGEE_9hNkxNG6PS8Ch-drSpEgCD8&sensor=true&libraries=places"></script>
+        <script type="text/javascript" src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
+        <script src='//google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js' type='text/javascript'></script>
+        <%= stylesheet_link_tag *jasmine_css_files %>
+        <%= javascript_include_tag *jasmine_js_files %>
+    </head>
+    <body class="map index">
+        <div id="location-search" style="display: none;">
+            <%= text_field_tag(:location, nil, class: 'form-control col-lg-2', placeholder: 'Search for Locations')%>
+        </div>
+        <button class="draw-track-btn" style="display: none;"> </button>
+        <div id="filter-results">
+            <div class="result-container" id="resource_0"></div>
+        </div>
+        <form id='gpx' style="display: none;">
+            <input id='gpx-upload' type='file'>
+        </form>
+        <form id='upload' action="/" style="display: none;">
+            <input id='file-upload' type='file'>
+            <input type="submit" id="file_upload_btn" disabled="disabled">
+        </form>
+        <div id="main_map"></div>
+        <div id="jasmine_content"></div>
+        <%= yield %>
+    </body>
+</html>

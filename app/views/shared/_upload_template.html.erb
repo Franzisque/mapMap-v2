@@ -1,0 +1,18 @@
+<%#=
+# shared - _upload_template.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+<%# jquery upload template # %>
+<script id="template-upload" type="text/x-tmpl">
+    <div class="upload">
+        <span class="preview" id="file-{%=o.id%}"></span>
+        <span class="filename">{%=o.file.name%}</span>
+        <span class="filesize">{%=bytesToSize(o.file.size)%}</span>
+    </div>
+</script>

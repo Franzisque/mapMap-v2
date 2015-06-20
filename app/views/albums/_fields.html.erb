@@ -1,0 +1,58 @@
+<%#=
+# albums - _fields.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<% if params[:controller] == 'resource_steps' %>
+    <%= f.fields_for :images, setup_album(@resource.medium) do |ff| %>
+        <div class="field">
+            <div class="label-field">
+                <%= ff.label :pic, "Image upload*" %>
+                <i class="image-upload-info">(min. 800x600 px)</i>
+            </div>
+            <div class="input-field">
+                <span class="btn btn-success fileinput-button">
+                    <%= ff.file_field :pic, required: true, multiple: true, accept: "image/*", name: "resource[medium_attributes][images_attributes][][pic]", class: "new-album-file-field" %>Select Images
+                </span>
+            </div>
+        </div>
+    <% end %>
+<% else %>
+    <% update_album(@resource.medium) %>
+    <p><%= "Current image(s):" %></p>
+    <%= f.fields_for :images do |ff| %>
+        <% if ff.object.id.present? %>
+            <div class="field-images">
+                <div class="img-container">
+                    <%= image_tag ff.object.pic.url(:thumb, timestamp: false) %>
+                </div>
+                <div class="field">
+                    <div class="checkbox">
+                        <%= ff.check_box :_destroy %>
+                        <%= ff.label :_destroy, "remove" %>
+                    </div>
+                </div>
+            </div>
+        <% else %>
+            <div class="field">
+                <div class="label-field">
+                    <%= ff.label :pic, 'Image upload' %>
+                    <i class="image-upload-info">(min. 800x600 px)</i>
+                </div>
+                <div class="input-field">
+                    <span class="btn btn-success fileinput-button">
+                        <%= ff.file_field :pic, name: "resource[medium_attributes][images_attributes][#{ff.index}][pic]", class: "edit-album-file-field", accept: "image/*" %>Select Image
+                    </span>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>
+
+<%= render partial: 'shared/upload_template' %>

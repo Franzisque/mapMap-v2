@@ -1,0 +1,13 @@
+/**
+ * resources - index.js.erb
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+$('#filter-result').html("<%= escape_javascript(render partial: 'shared/filter_result') %>");
+$('#filter-result').fadeIn('fast');

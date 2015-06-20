@@ -1,0 +1,31 @@
+<%#=
+# devise-confirmations - new.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="devise-pw-new" class="devise-form one-page">
+    <h1>Resend confirmation instructions</h1>
+    <div class="register-form">
+        <div class="form-content">
+            <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+                <%= devise_error_messages! %>
+
+                <div class="field">
+                    <%= f.email_field :email, autofocus: true, placeholder: "Email address" %>
+                </div>
+
+                <div class="actions">
+                    <%= f.submit "Resend confirmation instructions", class: "btn btn-primary" %>
+                    <%= link_to "Back", :back, class: "btn" %>
+                </div>
+            <% end %>
+            <%= render "devise/shared/links" %>
+        </div>
+    </div>
+</div>

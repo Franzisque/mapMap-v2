@@ -1,0 +1,51 @@
+<%#=
+# messages - index.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="messages media-form one-page">
+    <h1>Messages</h1>
+    <div class="messages-list form-content">
+
+        <div class="messages-sidebar right-box">
+            <h3>Contact</h3>
+            <% if current_user.allowcontact %>
+                <span class="new-contact">
+                <div class="input-field">
+                    <%= text_field_tag(:username, nil, class: 'form-control', id: 'tag-box-new-user', placeholder: 'Search User') %>
+                </div>
+                </span>
+            <% end %>
+            <% @contacts.each do |contact| %>
+                <div class="contact <%='active' if contact == @contact %> <%='unread' if current_user.has_unread_messages(contact) %>">
+                    <%=link_to contact.username, usermessage_path(contact.username) %>
+                </div>
+            <% end %>
+        </div>
+
+        <% if @message_count == 0 %>
+            <div class="messages-content left-box">
+                <h5 class="no-messages">No Messages</h5>
+            </div>
+        <% else %>
+            <div class="messages-content left-box" data-user="<%=@contact.username %>">
+
+                <% @messages.each do |message| %>
+                    <%= render partial: 'message', locals: {message: message} %>
+                <% end %>
+
+                <div class="new-message">
+                    <%= render 'form' %>
+                </div>
+
+            </div>
+        <% end %>
+        <div class="clear"></div>
+    </div>
+</div>

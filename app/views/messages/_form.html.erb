@@ -1,0 +1,37 @@
+<%#=
+# messages - _form.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="form-content">
+    <%= form_for(@message, url: {action: "create"}, remote: true) do |f| %>
+        <% if @message.errors.any? %>
+            <div id="error_explanation" class="error_messages">
+                <h3><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h3>
+                <ul>
+                    <% @message.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+            <div class="input-field">
+                <%= f.text_field :text, :required => :true, class: 'form-control', placeholder: "Send Message to #{@receiver.username}", autofocus: true %>
+            </div>
+        </div>
+
+        <%= f.hidden_field :receiver_id, :required => :true, class: 'form-control', value: @receiver.id %>
+
+        <div class="actions">
+            <%= f.submit "Send Message" %>
+        </div>
+    <% end %>
+</div>

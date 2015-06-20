@@ -1,0 +1,32 @@
+<%#=
+# user - show.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="user-profile" class="one-page">
+    <div id="profile-wrapper">
+        <div id="profile-top" class="top-container">
+            <div id="profile-inner">
+                <div class="flag">
+                    <p>mapMap</p>
+                    <p>presents</p>
+                </div>
+                <%= render partial: 'user_info', locals: { user: @user } %>
+                <div id="profile-buttons">
+                    <%= render partial: 'media_buttons' %>
+                </div>
+            </div>
+        </div>
+        <div id="profile-content">
+            <div id="profile-media">
+                <%= render partial: 'resources', locals: { resources: @resources } %>
+            </div>
+        </div>
+    </div>
+</div>

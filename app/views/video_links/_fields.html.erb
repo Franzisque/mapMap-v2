@@ -1,0 +1,20 @@
+<%#=
+# video_links - _fields.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+<% if params[:controller] == 'resource_steps' %>
+    <div class="field">
+        <div class="label-field">
+            <%= f.label :link, "Youtube/Vimeo URL*" %>
+        </div>
+        <div class="input-field">
+            <%= f.text_field :link, required: true, placeholder: "https://www.youtube.com/watch?v=cv6SBQJJQwM" %>
+        </div>
+    </div>
+<% end %>

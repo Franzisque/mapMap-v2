@@ -1,0 +1,31 @@
+<%#=
+# resources - index.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+<div id="media-all" class="one-page">
+    <div class="media-content">
+        <% if @resources.empty? %>
+            <p>No media available</p>
+        <% else %>
+            <% @resources.each do |resource| %>
+                <div class="media-container">
+                    <%= render :partial => index_partial_for( resource.medium ), locals: { resource: resource } %>
+                    <div class="media-info">
+                        <h3><%= link_to resource.title, medium_path(resource) %></h3>
+                        <p>from: <%= link_to resource.user.username, profile_path(resource.user.username) %></p>
+                        <p>published <%= set_time_difference(resource.created_at) %></p>
+                        <p><%= resource.views %> views</p>
+                        <%= content_tag(:div, nil, class: "media-icon #{resource.medium_type.downcase}-icon") %>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+

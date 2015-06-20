@@ -1,0 +1,47 @@
+<%#=
+# shared - _filterbar.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="filter-toggle"><span class="icon"><%= render partial: 'svg/arrow' %></span></div>
+<div id="toggle-bar" class="filter-bar">
+    <div class="filter media-form first">
+        <div class="filter-content form-content" id="filter">
+            <div class="reset-form"><span class="reset-info">Clear Filter</span><span class="reset-link">&#10006;</span></div>
+            <h2 class="collapsebar uncollapsed">Filter Results</h2>
+            <%= form_tag({controller: "resources", action: "index"}, remote: true, method: "get", class: 'form-horizontal', id: 'filter-form') do %>
+                <div id="activities">
+                    <p class="first">Activity type:</p>
+                    <div class="checkboxes half">
+                        <%= collection_check_boxes :filter, :season_tags, @season_tags, :name, :name, class: 'season_tags', checked: [params[:tag]] %>
+                    </div>
+                    <div class="checkboxes half">
+                        <%= collection_check_boxes :filter, :door_tags, @door_tags, :name, :name, class: 'door_tags', checked: [params[:tag]] %>
+                    </div>
+                </div>
+                <div id="difficulty">
+                    <p>Difficulty level:</p>
+                    <div class="field checkboxes level-tags">
+                        <%= collection_check_boxes :filter, :level_tags, @level_tags, :name, :name, checked: [params[:tag]] %>
+                    </div>
+                </div>
+                <div class="field custom-tags">
+                    <p>Filter by Username/Tags:</p>
+                    <div class="input-field" id="filter-user">
+                        <%= text_field_tag(:username, nil, class: 'form-control', id: 'tag-box-user', placeholder: 'Username') %>
+                    </div>
+                    <div class="input-field" id="filter-tags">
+                        <%= text_field_tag(:tag_list, Tag.is_custom_tag(params[:tag]) ? params[:tag] : nil, class: 'form-control', id: 'tag-box', placeholder: 'Tags ( mountain_biking, ... )') %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div id="filter-result"></div>
+</div>

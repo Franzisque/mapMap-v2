@@ -1,0 +1,24 @@
+<%#=
+# user - _resources.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<% if resources.empty? %>
+
+    <div class="empty-container">
+        <p>No media <br />available</p>
+    </div>
+
+<% else %>
+
+    <% resources.each do |resource| %>
+        <%= render partial: 'resource', locals: { resource: resource } %>
+    <% end %>
+
+<% end %>

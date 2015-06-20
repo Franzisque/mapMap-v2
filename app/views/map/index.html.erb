@@ -1,0 +1,18 @@
+<%#=
+# map - index.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+<div id="main_map"></div>
+<div class="feedback-button">
+    <a href="mailto:mapmap.activity@gmail.com?subject=Feedback">Feedback</a>
+</div>
+<% unless cookies['first-time-overlay'] == 'hide' || user_signed_in? %>
+    <%= render partial: 'shared/first_time_overlay' %>
+<% end %>
+<%= render partial: 'shared/filterbar' %>

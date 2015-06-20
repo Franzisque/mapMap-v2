@@ -1,0 +1,18 @@
+<%#=
+# devise-shared - _sides.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<%- if controller_name != 'sessions' %>
+    <%= link_to "Log in", new_session_path(resource_name), class: "btn" %><br />
+<% end -%>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <%= link_to "Sign up", new_registration_path(resource_name), class: "btn" %><br />
+<% end -%>

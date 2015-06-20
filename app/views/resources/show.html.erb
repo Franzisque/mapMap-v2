@@ -1,0 +1,158 @@
+<%#=
+# resources - show.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<% content_for :facebook_metadata do %>
+    <meta property="fb:app_id"      content="679138868810335" />
+    <meta property="og:type"        content="article" />
+    <meta property="og:url"         content="<%= url_for(medium_path(@resource)) %>" />
+    <meta property="og:description" content="<%= @resource.description %>" />
+    <meta property="og:title"       content="<%= @resource.title %>" />
+    <meta property="og:image"       content="<%= @resource.medium.thumburl %>" />
+<% end %>
+
+<div id="media-show" data-id="<%= @resource.id %>" class="one-page">
+
+    <div id="img-light-box">
+        <div id="img-close" class="close">
+            <a id="light-box-close">x</a>
+        </div>
+        <div id="right-box-arrow"> </div>
+        <div id="left-box-arrow"> </div>
+        <div id="light-box-img-wrapper">
+            <img alt="mapMap" src="" id="light-box-image">
+        </div>
+    </div>
+
+    <div id="media-content">
+        <div class="media-left left">
+            <div class="media-container">
+                <div id="media-resource" class="media-box">
+                    <%= render :partial => show_partial_for( @resource.medium ) %>
+                </div>
+                <div class="media-box">
+                    <div id="media-map" class=""></div>
+                    <% if @resource.distance > 0 %>
+                        <div class="track-details">
+                            <div class="detail-wrapper">
+                                <span class="detail distance">
+                                    <span class="detail-description"><i class='fa fa-long-arrow-right horizontal'></i>This track has a length of</span>
+                                    <span class="detail-value"><%= (@resource.distance/1000).round(2) %> km</span>
+                                </span>
+                            </div>
+                            <div class="detail-wrapper">
+                                <span class="detail altitude-up">
+                                    <span class="detail-description"><i class='fa fa-long-arrow-up vertical'></i>This track has a total climb of</span>
+                                    <span class="detail-value"><%= @resource.altitude_up.round(2) %> m</span>
+                                </span>
+                            </div>
+                            <div class="detail-wrapper">
+                                <span class="detail altitude-down">
+                                    <span class="detail-description"><i class='fa fa-long-arrow-down vertical'></i>This track has a total descent of</span>
+                                    <span class="detail-value"><%= @resource.altitude_down.round(2) %> m</span>
+                                </span>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+                <div id="media-details" class="media-box">
+                    <h2><%= @resource.title %></h2>
+                    <div class="media-user">
+                        <%= image_tag @resource.user.image_url("small"), alt: @resource.user.username %>
+                        <%= link_to @resource.user.username, profile_path(@resource.user.username) %>
+                        <% if can? :manage, @resource %>
+                            <%= link_to "Edit", edit_medium_path(@resource), class: "btn btn-update" %>
+                        <% end %>
+                    </div>
+                    <span class="views"><i class='fa fa-eye '></i><%= "#{@resource.views} #{'view'.pluralize(@resource.views)}" %></span>
+                    <div class="vote-container">
+                        <%= render partial: 'vote', locals: {resource: @resource } %>
+                    </div>
+                    <span class="publish"><%= "published on #{ l @resource.created_at.to_date}" %></span>
+                    <hr />
+                    <div class="social_like_share_buttons">
+                        <div class="fb-like" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                    </div>
+                </div>
+
+                <% if @resource.description.present? %>
+                    <div id="media-description">
+                        <p><%= text_block(@resource.description) %></p>
+                    </div>
+                    <hr />
+                <% end %>
+                <div id="media-tags">
+                    <% @resource.tags.each do |tag| %>
+                        <%= link_to  tag_path(tag.name), class: "btn-tag" do %>
+                            <%= content_tag(:i, nil, class: "fa fa-tag") %>
+                            <%= tag.name %>
+                        <% end %>
+                    <% end %>
+                </div>
+                <% if @resource.medium_type == 'Album' %>
+                    <%= render :partial => details_partial_for( @resource.medium ) %>
+                <% end %>
+            </div>
+
+            <div id="media-comment" class="comment-box">
+                <h3><i class='fa fa-comment '></i>Add a Comment</h3>
+                <% if user_signed_in? %>
+                    <%= render 'comments/form', {submit_text: 'Comment', submit_class: 'btn btn-primary', url: medium_comments_path(@resource, @comment), remote: true } %>
+                <% else %>
+                    <div class="comment-login-box">
+                        <%= link_to content_tag(:span, "Awesome comment ..."), user_session_path, class: 'comment-login' %>
+                    </div>
+                <% end %>
+            </div>
+            <div id="media-comments-container" class="comment-box">
+                <h3><i class='fa fa-comments '></i>Comments</h3>
+                <% if @resource.comments.empty? %>
+                    <div class="empty-comments">
+                        <p>Be the first to comment this media.</p>
+                    </div>
+                <% else %>
+                    <% @resource.comments.each do |comment| %>
+                        <%= render partial: 'comments/comment', locals: {comment: comment} %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="media-right right">
+            <% unless @nearby_resources.empty? %>
+                <div class="media-box media-nearby">
+                    <h3>Nearby media:</h3>
+                    <% @nearby_resources.each do |resource| %>
+                        <%= render partial: 'resource', locals: { resource: resource } %>
+                    <% end %>
+                </div>
+            <% end %>
+
+            <% unless @similar_resources.empty? %>
+                <div class="media-box media-similar">
+                    <h3>Similar media:</h3>
+                    <% @similar_resources.each do |resource| %>
+                        <%= render partial: 'resource', locals: { resource: resource } %>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3&appId=679138868810335";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

@@ -1,0 +1,23 @@
+<%#=
+# resource_steps - _form.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<%= form_for @resource, url: wizard_path, :html => { class: 'form-horizontal', id: 'input_form_tracks' } do |f| %>
+
+    <%= render partial: 'shared/errors' %>
+
+    <%= yield f %>
+
+    <div class="actions">
+        <%= f.submit "Finish", class: "btn btn-primary" %>
+    </div>
+<% end %>
+
+

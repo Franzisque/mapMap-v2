@@ -1,0 +1,18 @@
+<%#=
+# comments - edit.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="comment-edit" class="media-form one-page">
+    <h1>Editing comment</h1>
+    <div class="form-content">
+        <%= render 'form', {submit_text: 'Update', submit_class: 'btn btn-update', url: medium_comment_path(@resource, @comment), remote: false } %>
+        <%= link_to 'Back', medium_path(@resource), class: "btn" %>
+    </div>
+</div>

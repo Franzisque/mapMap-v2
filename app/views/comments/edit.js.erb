@@ -1,0 +1,13 @@
+/**
+ * comments - edit.js.erb
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+var content = $('.media-comment[data-id=<%= @comment.id %>]').find($(".comment-body"));
+content.html('<%= escape_javascript(render "form", { submit_text: "Update", submit_class: "btn btn-update", url: medium_comment_path(@resource, @comment), remote: true } ) %>');

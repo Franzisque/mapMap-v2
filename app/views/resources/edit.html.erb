@@ -1,0 +1,27 @@
+<%#=
+# resources - edit.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+<div id="media-edit" class="media-form one-page" data-id="<%= @resource.id %>">
+
+    <div id="edit-track">
+        <div class="form-content">
+            <%= render 'resources/track_form', {map_id: "media-edit-map", url: medium_path(@resource), submit_text: 'Update Track', btn_class: 'btn btn-update' } %>
+            <div class="clear"></div>
+        </div>
+        <div id="edit-close" class="close"><a id="track-close">x</a></div>
+    </div>
+
+    <h1>Edit media</h1>
+    <div id="media-edit-form" class="form-content">
+        <%= form_for @resource, url: medium_path(@resource), :html => { method: :put, :multipart => true, class: 'form-horizontal' } do |f| %>
+            <%= render 'resources/form_content', {submit_text: 'Update', btn_class: 'btn btn-update', btn_id: 'file_upload_btn', f: f } %>
+        <% end %>
+    </div>
+</div>

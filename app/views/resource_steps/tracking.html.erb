@@ -1,0 +1,22 @@
+<%#=
+# resource_steps - tracking.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="media-new" class="media-form one-page">
+
+    <%= render partial: 'steps' %>
+    <div class="step-info">
+        <p>Please add a track or mark a location for your media:</p>
+    </div>
+    <div id="track-form" class="form-content">
+        <%= render 'resources/track_form', {map_id: "media-create-map", url: wizard_path, submit_text: 'Finish', btn_class: 'btn btn-primary' } %>
+        <div class="clear"></div>
+    </div>
+</div>

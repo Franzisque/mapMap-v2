@@ -1,0 +1,22 @@
+<%#=
+# messages - _message.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div class="existing-messages <%= "active-user" if message.sender == current_user %>" data-id="<%=message.id %>">
+    <div class="message-header">
+        <%=image_tag(message.sender.image_url("small"), alt: message.sender.username, class: "user-icon-round") %>
+        <%= link_to message.sender.username, profile_path(message.sender.username), class: "message-user" %>
+        <span class="message-sent"><%=set_time_difference(message.created_at) %></span>
+    </div>
+    <p class="message-text"><%=message.text %></p>
+    <div class="delete-button">
+        <%= link_to content_tag(:i, nil, class: 'fa fa-times'), message, title: "Delete", remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+</div>

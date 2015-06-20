@@ -1,0 +1,321 @@
+/**
+ * styles - profil.scss
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+#user-profile {
+    background-color: $content-background-color;
+    background-size: cover;
+    background-position: 30% -5%;
+    background-repeat: no-repeat;
+    overflow-y: auto;
+    background-image: image_url('utah.jpg');
+    padding-top: 100px;
+
+    #profile-wrapper {
+      width: 97%;
+      max-width: $content-width;
+      margin: 0 auto;
+      margin-bottom: 2%;
+    }
+
+    #profile-top {
+        background-image: image_url('skateboard.jpg');
+        background-position: 50% 70%;
+        #profile-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                margin: 0 auto;
+                padding: 10px;
+        }
+
+        h1 {
+            font-family: $font-hand;
+            color: #fff;
+            text-align: center;
+        }
+
+        .flag {
+            display:none;
+        }
+
+        #profile-pic {
+            $pic-width: 150px;
+            $pic-frame-padding: 5px;
+            $pic-frame-border: 1px;
+            background-color: rgba(255,255,255,1);
+            margin: 0 auto;
+            @include img-border-frame($pic-width, $pic-frame-padding, $pic-frame-border);
+            @include vendor-prefix("border-radius", "100%");
+            padding: $pic-frame-padding;
+            img {
+                width: $pic-width;
+                height: $pic-width;
+                @include vendor-prefix("border-radius", "100%");
+            }
+        }
+
+        #profile-information{
+            width: 100%;
+            max-width: 270px;
+            margin: 0 auto;
+            margin-top: 10px;
+            .profile-message {
+                margin-top: 10px;
+                border: 1px solid #fff;
+                padding: 5px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                color: #fff;
+                text-align: center;
+                display: inline-block;
+                &:hover {
+                    background-color: rgba(255,255,255,1);
+                    color: #777;
+                }
+            }
+            .storage-limit {
+                position: relative;
+                width: 100%;
+                height: 24px;
+                border: 1px rgba(255,255,255,0.7) solid;
+                border-radius: 5px;
+                margin-top: 5px;
+                .storage-actual {
+                    width: 100%;
+                    text-align: center;
+                    position: absolute;
+                    font-size: 16px;
+                    top: 0;
+                    left: 0;
+                }
+                .storage-used {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 0;
+                    background: rgba(255,255,255,0.4);
+                }
+            }
+        }
+
+        #profile-buttons {
+            position: absolute;
+            max-width: 270px;
+            bottom: 10px;
+            margin: 0 auto;
+            margin-top: 30px;
+            height: 30px;
+            left:50%;
+            margin-left:-135px;
+            .media-button {
+                border: 1px solid #fff;
+                padding: 5px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                color: #fff;
+                text-align: center;
+                &:hover, &.active {
+                    background-color: rgba(255,255,255,1);
+                    color: #777;
+                }
+            }
+        }
+    }
+
+    #profile-content {
+        background-color: #eee;
+        #profile-media {
+            padding: 15px 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            @include transition(all, 0.5s, ease-in-out);
+            .resource-container {
+                width: 100%;
+                max-width: 300px;
+                background-color: rgba(255,255,255,1);
+                margin: 0 auto;
+                margin-bottom: 15px;
+                @include transition(all, 0.5s, ease-in-out);
+                .media-title {
+                    width: 100%;
+                    height: 169px;
+                    overflow: hidden;
+                    position: relative;
+                    iframe {
+                        width: 100%;
+                        height: 100%;
+                    }
+                    img {
+                        width: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        clip: rect(0px,300px,169px,0px);
+                    }
+                    video {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .media-details {
+                    padding: 10px;
+                    font-size: 16px;
+                    max-width: 380px;
+                    position: relative;
+                    h3 {
+                        margin-bottom: 5px;
+                        font-size: 1.2em;
+                    }
+                    strong {
+                        font-weight: bold;
+                    }
+                }
+                .resource-manage {
+                    padding: 5px 10px;
+                    &.not-active {
+                        background-color: $red;
+                    }
+                    .resource-info {
+                        font-size: 0.9em;
+                    }
+                    &:after {
+                        content: "";
+                        display: block;
+                        clear: both;
+                    }
+                }
+                .resource-actions {
+                    float: right;
+                }
+                &:after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+            }
+            .empty-container {
+                height: 261px;
+                width: 300px;
+                background-color: rgba(255,255,255,1);
+                margin: 0 auto;
+                text-align: center;
+                font-size: 2.1em;
+                line-height: 1.1;
+                color: #999;
+                padding-top: 90px;
+            }
+        }
+    }
+}
+
+@media only screen and(min-width: 480px) {
+    #user-profile{
+        #profile-top{
+            background-size: auto 700px;
+            background-position: 50% 70%;
+            #profile-pic{
+                margin: 0 10px;
+            }
+            #profile-information{
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #user-profile{
+        #profile-top{
+            h1{
+                position:absolute;
+                left: 250px;
+                top:20px;
+                text-align: none;
+            }
+            .flag {
+                display:block;
+            }
+
+            #profile-pic{
+                $pic-width: 200px;
+                $pic-frame-padding: 7px;
+                $pic-frame-border: 1px;
+                padding: $pic-frame-padding;
+                position: absolute;
+                top: 30px;
+                left: 0px;
+                @include img-border-frame($pic-width, $pic-frame-padding, $pic-frame-border);
+                img{
+                    width: $pic-width;
+                    height: $pic-width;
+                }
+            }
+
+            #profile-information{
+                position:absolute;
+                max-width: 300px;
+                left: 10px;
+                top: 250px;
+            }
+
+            #profile-buttons {
+                bottom: 20px;
+            }
+        }
+
+        #profile-content {
+            #profile-media {
+                max-width: 660px;
+                .resource-container, .empty-container {
+                    float:left;
+                    margin: 10px;
+                }
+                &:after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #user-profile{
+        #profile-top{
+            background-size: auto 800px;
+            background-position: 20% 70%;
+            min-height: 500px;
+        }
+        #profile-content {
+            #profile-media {
+                width: 100%;
+                max-width: 980px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #user-profile{
+        #profile-top{
+            background-position: 50% 75%;
+            background-size: cover;
+            height: 500px;
+            #profile-inner {
+                width: 90%;
+                max-width: $content-width;
+            }
+        }
+    }
+}

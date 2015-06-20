@@ -1,0 +1,18 @@
+<%#=
+# shared - _js_errors.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<div id="nav-message" class="message">
+    <% if resource.errors.any? %>
+        <% resource.errors.full_messages.each do |message| %>
+            <p class="alert alert-danger"><%= message %></p>
+        <% end %>
+    <% end %>
+</div>

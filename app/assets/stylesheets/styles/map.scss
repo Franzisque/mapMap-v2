@@ -1,0 +1,260 @@
+/**
+ * styles - map.scss
+ *
+ * university:      University of Applied Sciences Salzburg
+ * degree course:   MultiMediaTechnology (BSc)
+ * usage:           Multimediaprojekt 3 (MMP3)
+ * authors:         Stephan Griessner
+ *                  Manuel Mitterer
+ *                  Franziska Oberhauser
+ */
+
+#main_map {
+    position:relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #ddd;
+}
+.animated-shadow, input.animated-shadow {
+    @include vendor-prefix("transition", "all 0.5s");
+    @include vendor-prefix("box-shadow", "0px 0px 20px #3178C1");
+}
+.rich-marker {
+    display: block;
+    position: relative;
+    .numbered-marker {
+        width: 38px;
+    }
+    .marker-number {
+        display: block;
+        position: absolute;
+        top: 6px;
+        width: 38px;
+        height: 38px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #181f81;
+    }
+}
+#first-time-overlay {
+    position: absolute;
+    top: 118px;
+    left: 10px;
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+    width: calc(100% - 20px);
+    height: calc(100% - 128px);
+    z-index: 99999;
+    box-shadow: 0px 0px 5px #ccc;
+    overflow: auto;
+    h3 {
+        font-size: 30px;
+    }
+    h4 {
+        margin: 15px 0px 5px 0px;
+    }
+    .project-content {
+        position: relative;
+        display: block;
+        padding: 20px;
+        height: 100%;
+        ol {
+            margin-top: 20px;
+            list-style-type: none;
+            font-size: 16px;
+            li {
+                margin-left: 30px;
+                margin-top: 10px;
+            }
+        }
+        ul {
+            margin-top: 10px;
+            margin-left: 10px;
+            list-style-type: square;
+            font-size: 16px;
+            li {
+                margin-left: 30px;
+                margin-top: 10px;
+            }
+        }
+        b {
+            font-weight: bold;
+        }
+        .list {
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+        .overlay-step {
+            color: #000;
+            margin: 1%;
+            background: transparent url('/assets/mountain-intro.jpg') no-repeat center 40%;
+            background-size: cover;
+            padding: 70px 40px 120px 40px;
+            position: absolute;
+            width: calc(98% - 40px);
+            @include vendor-prefix("text-shadow", "0px 0px 20px #fff");
+            @include vendor-prefix("box-shadow", "0px 0px 20px #ddd");
+            h4 {
+                color: #000;
+                margin: 0px 0px 15px 0px;
+                padding-bottom: 15px;
+            }
+            a, .highlight-target {
+                color: #000;
+                &:hover, &:active, &:focus {
+                    color: #3178C1;
+                    text-decoration: none;
+                }
+            }
+            &.step-1 {
+                h3 {
+                    margin-top: -20px;
+                }
+            }
+            &.step-2 {
+                text-align: right;
+                background-image: url('/assets/utah.jpg');
+                background-position: 50% 25%;
+                h3 {
+                    display: inline-block;
+                    margin-right: 5%;
+                }
+                p {
+                    margin-right: 5%;
+                }
+                ol {
+                    margin-right: 5%;
+                }
+            }
+            &.step-3 {
+                @include vendor-prefix("text-shadow", "0px 0px 20px #D2AB8E");
+                background-image: url('/assets/skateboard.jpg');
+                h3 {
+                    display: inline-block;
+                }
+                ul {
+                    @include vendor-prefix("text-shadow", "0px 0px 20px #D2AB8E");
+                }
+            }
+            .hide-overlay {
+                @include vendor-prefix("text-shadow", "none");
+                position: absolute;
+                display: block;
+                top: 28px;
+                right: 40px;
+                font-size: 26px;
+                z-index: 1000000;
+                cursor: pointer;
+                &.hidden {
+                    display: none;
+                }
+                .reset-link {
+                    @include vendor-prefix("transition", "all 0.5s");
+                    position: absolute;
+                    background: transparent;
+                    top: 0px;
+                    right: -10px;
+                    line-height: 20px;
+                    color: rgba(255,255,255,1);
+                    padding: 5px;
+                }
+                &:hover, &:active {
+                    .reset-link {
+                        color: rgba(225,225,225,1);
+                    }
+                }
+            }
+            .next-button, .last-button, .prev-button {
+                @include vendor-prefix("transition", "all 0.5s");
+                position: absolute;
+                display: block;
+                cursor: pointer;
+                bottom: 40px;
+                right: 40px;
+                padding: 10px 15px;
+                background: white;
+                color: rgba(71,71,71,1);
+                &:hover, &:active {
+                    background: rgba(225,225,225,1);
+                }
+            }
+            .prev-button {
+                left: 40px;
+                right: auto;
+            }
+        }
+    }
+}
+
+.feedback-button{
+    position: absolute;
+    left: -30px;
+    top: 140px;
+    @include vendor-prefix(transform, rotate(-90deg));
+    a{
+        color: #fff;
+        background-color: $blue;
+        display: block;
+        padding: 5px 10px;
+        &:hover{
+            text-decoration: none;
+            background-color: transparentize($blue, 0.1);
+        }
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    #first-time-overlay {
+        .project-content {
+            .overlay-step {
+                &.step-1 {
+                    h3 {
+                        margin-top: -20px;
+                    }
+                    h4, p {
+                        margin-left: 26%;
+                    }
+                    p {
+                        margin-left: 27%;
+                    }
+                }
+                &.step-2 {
+                    h3 {
+                        display: inline-block;
+                        margin-right: 5%;
+                    }
+                    p {
+                        margin-right: 5%;
+                    }
+                    ol {
+                        margin-right: 5%;
+                    }
+                }
+                .next-button, .last-button, .prev-button {
+                    padding: 10px 40px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #first-time-overlay {
+        top: 70px;
+        height: calc(100% - 80px);
+    }
+    .feedback-button {
+        top: 100px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #first-time-overlay {
+        width: calc(100% - 350px);
+    }
+}
+
+
+

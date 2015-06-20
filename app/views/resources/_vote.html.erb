@@ -1,0 +1,22 @@
+<%#=
+# resources - _vote.html.erb
+#
+# university:       University of Applied Sciences Salzburg
+# degree course:    MultiMediaTechnology (BSc)
+# usage:	        Multimediaprojekt 3 (MMP3)
+# authors:          Stephan Griessner
+#                   Manuel Mitterer
+#                   Franziska Oberhauser
+%>
+
+<% if current_user %>
+    <%= link_to content_tag(:i, nil, class: 'fa fa-thumbs-up '), vote_medium_path(resource, vote: "up"), method: :post, class: "vote up-vote", remote: true  %>
+    <span><%= resource.up_votes %></span>
+    <%= link_to content_tag(:i, nil, class: 'fa fa-thumbs-down '), vote_medium_path(resource, vote: "down"), method: :post, class: "vote down-vote", remote: true %>
+    <span><%= resource.down_votes %></span>
+<% else %>
+    <%= link_to content_tag(:i, nil, class: 'fa fa-thumbs-up '), user_session_path, class: "vote up-vote" %>
+    <span><%= resource.up_votes %></span>
+    <%= link_to content_tag(:i, nil, class: 'fa fa-thumbs-down '), user_session_path, class: "vote down-vote" %>
+    <span><%= resource.down_votes %></span>
+<% end %>
